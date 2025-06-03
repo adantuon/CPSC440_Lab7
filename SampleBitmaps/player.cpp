@@ -315,6 +315,9 @@ void player::DrawPlayer()
     case 3:
         al_draw_rotated_bitmap(image, 64, 0, getX(), getY(), 3 * ALLEGRO_PI / 2, 0);
         break;
+    default:
+        al_draw_rotated_bitmap(image, 0, 64, getX(), getY(), ALLEGRO_PI / 2, 0);
+        break;
     }
 }
 void player::MoveUp(BadGuy BadGuys[], int cSize)
