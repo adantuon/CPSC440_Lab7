@@ -68,9 +68,6 @@ void weapon::Fireweapon( player &Player)
 			y = Player.getY() + Player.getBoundY() / 2;
 			break;
 		}
-
-		printf("WeaponX is: %i WeaponY is: %i\n", x, y);
-
 		
 		live = true;
 	}
