@@ -24,6 +24,7 @@ private:
 	int speed;
 	int boundx;
 	int boundy;
+	int direction;
 	ALLEGRO_BITMAP *image;
 };
 #endif

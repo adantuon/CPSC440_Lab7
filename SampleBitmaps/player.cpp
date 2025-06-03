@@ -295,16 +295,31 @@ player::player(int HEIGHT)
 	y = HEIGHT / 2;
 
 	speed = 7;
+    int direction = 1;
 	boundx = al_get_bitmap_width(image);
 	boundy = al_get_bitmap_height(image);
 
 }
 void player::DrawPlayer()
 {
-	al_draw_bitmap(image, x,y, 0);
+    switch (direction) {
+    case 0:
+        al_draw_bitmap(image, getX(), getY(), 0);
+        break;
+    case 1:
+        al_draw_rotated_bitmap(image, 0, 64, getX(), getY(), ALLEGRO_PI / 2, 0);
+        break;
+    case 2:
+        al_draw_bitmap(image, getX(), getY(), ALLEGRO_FLIP_VERTICAL | ALLEGRO_FLIP_HORIZONTAL);
+        break;
+    case 3:
+        al_draw_rotated_bitmap(image, 64, 0, getX(), getY(), 3 * ALLEGRO_PI / 2, 0);
+        break;
+    }
 }
 void player::MoveUp(BadGuy BadGuys[], int cSize)
 {
+    direction = 0;
 	y -= speed;
 	if(y < 0)
 		y = 0;
@@ -325,6 +340,7 @@ void player::MoveUp(BadGuy BadGuys[], int cSize)
 }
 void player::MoveDown(int HEIGHT, BadGuy BadGuys[], int cSize)
 {
+    direction = 2;
 	y += speed;
 	if(y > HEIGHT-boundy)
 		y = HEIGHT-boundy;
@@ -345,6 +361,7 @@ void player::MoveDown(int HEIGHT, BadGuy BadGuys[], int cSize)
 }
 void player::MoveLeft(BadGuy BadGuys[], int cSize)
 {
+    direction = 3;
 	x -= speed;
 	if(x < 0)
 		x = 0;
@@ -365,6 +382,7 @@ void player::MoveLeft(BadGuy BadGuys[], int cSize)
 }
 void player::MoveRight(int WIDTH, BadGuy BadGuys[], int cSize)
 {
+    direction = 1;
 	x += speed;
 	if(x > WIDTH-boundx)
 		x = WIDTH-boundx;
