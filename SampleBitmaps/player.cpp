@@ -40,27 +40,83 @@ void player::DrawPlayer()
 {
 	al_draw_bitmap(image, x,y, 0);
 }
-void player::MoveUp()
+void player::MoveUp(BadGuy BadGuys[], int cSize)
 {
 	y -= speed;
 	if(y < 0)
 		y = 0;
+
+	for (int j = 0; j < cSize; j++)
+	{
+		if (BadGuys[j].getLive())
+		{
+			if (x > (BadGuys[j].getX() - BadGuys[j].getBoundX()) &&
+				x < (BadGuys[j].getX() + BadGuys[j].getBoundX()) &&
+				y >(BadGuys[j].getY() - BadGuys[j].getBoundY()) &&
+				y < (BadGuys[j].getY() + BadGuys[j].getBoundY()))
+			{
+				y = BadGuys[j].getY() + BadGuys[j].getBoundY();
+			}
+		}
+	}
 }
-void player::MoveDown(int HEIGHT)
+void player::MoveDown(int HEIGHT, BadGuy BadGuys[], int cSize)
 {
 	y += speed;
 	if(y > HEIGHT-boundy)
 		y = HEIGHT-boundy;
+
+	for (int j = 0; j < cSize; j++)
+	{
+		if (BadGuys[j].getLive())
+		{
+			if (x > (BadGuys[j].getX() - BadGuys[j].getBoundX()) &&
+				x < (BadGuys[j].getX() + BadGuys[j].getBoundX()) &&
+				y >(BadGuys[j].getY() - BadGuys[j].getBoundY()) &&
+				y < (BadGuys[j].getY() + BadGuys[j].getBoundY()))
+			{
+				y = BadGuys[j].getY() - BadGuys[j].getBoundY();
+			}
+		}
+	}
 }
-void player::MoveLeft()
+void player::MoveLeft(BadGuy BadGuys[], int cSize)
 {
 	x -= speed;
 	if(x < 0)
 		x = 0;
+
+	for (int j = 0; j < cSize; j++)
+	{
+		if (BadGuys[j].getLive())
+		{
+			if (x > (BadGuys[j].getX() - BadGuys[j].getBoundX()) &&
+				x < (BadGuys[j].getX() + BadGuys[j].getBoundX()) &&
+				y >(BadGuys[j].getY() - BadGuys[j].getBoundY()) &&
+				y < (BadGuys[j].getY() + BadGuys[j].getBoundY()))
+			{
+				x = BadGuys[j].getX() + BadGuys[j].getBoundX();
+			}
+		}
+	}
 }
-void player::MoveRight(int WIDTH)
+void player::MoveRight(int WIDTH, BadGuy BadGuys[], int cSize)
 {
 	x += speed;
 	if(x > WIDTH-boundx)
 		x = WIDTH-boundx;
+
+	for (int j = 0; j < cSize; j++)
+	{
+		if (BadGuys[j].getLive())
+		{
+			if (x > (BadGuys[j].getX() - BadGuys[j].getBoundX()) &&
+				x < (BadGuys[j].getX() + BadGuys[j].getBoundX()) &&
+				y >(BadGuys[j].getY() - BadGuys[j].getBoundY()) &&
+				y < (BadGuys[j].getY() + BadGuys[j].getBoundY()))
+			{
+				x = BadGuys[j].getX() - BadGuys[j].getBoundX();
+			}
+		}
+	}
 }
