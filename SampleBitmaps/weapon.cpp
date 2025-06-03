@@ -49,18 +49,53 @@ void weapon::Fireweapon( player &Player)
 {
 	if(!live)
 	{
-		x = Player.getX() + Player.getBoundX();
-		y = Player.getY() + Player.getBoundY()/2;
+		direction = Player.getDir();
+
+		switch (direction) {
+		case 0:
+			x = Player.getX() + Player.getBoundX() / 2;
+			y = Player.getY();
+			break;
+		case 1:
+			x = Player.getX() + Player.getBoundX();
+			y = Player.getY() + Player.getBoundY() / 2;
+			break;
+		case 2:
+			x = Player.getX() + Player.getBoundX() / 2;
+			y = Player.getY() + Player.getBoundY();
+			break;
+		case 3:
+			x = Player.getX();
+			y = Player.getY() + Player.getBoundY() / 2;
+			break;
+		}
+
+		
 		live = true;
 	}
 }
-void weapon::Updateweapon(int WIDTH)
+void weapon::Updateweapon(int WIDTH, int HEIGHT)
 {
 	if(live)
 	{
-		x += speed;
-		if(x > WIDTH)
+		switch (direction) {
+		case 0:
+			y -= speed;
+			break;
+		case 1:
+			x += speed;
+			break;
+		case 2:
+			y += speed;
+			break;
+		case 3:
+			x -= speed;
+			break;
+		}
+
+		if (x > WIDTH || x < 0 || y > HEIGHT || y < 0)
 			live = false;
+		
 	}
 }
 void weapon::Collideweapon(BadGuy BadGuys[], int cSize)
