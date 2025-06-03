@@ -71,10 +71,10 @@ void weapon::Collideweapon(BadGuy BadGuys[], int cSize)
 		{
 			if(BadGuys[j].getLive())
 			{
-				if(x > (BadGuys[j].getX() - BadGuys[j].getBoundX()) &&
-					x < (BadGuys[j].getX() + BadGuys[j].getBoundX()) &&
-					y > (BadGuys[j].getY() - BadGuys[j].getBoundY()) &&
-					y < (BadGuys[j].getY() + BadGuys[j].getBoundY()))
+				if(x > (BadGuys[j].getX() - (boundx / 2)) &&
+					x < (BadGuys[j].getX() + BadGuys[j].getBoundX() + (boundx / 2)) &&
+					y > (BadGuys[j].getY() - (boundy / 2)) &&
+					y < (BadGuys[j].getY() + BadGuys[j].getBoundY() + (boundy) / 2))
 				{
 					live = false;
 					BadGuys[j].setLive(false);
