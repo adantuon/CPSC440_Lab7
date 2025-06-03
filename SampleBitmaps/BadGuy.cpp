@@ -36,22 +36,54 @@ void BadGuy::DrawBadGuy()
 	}
 
 }
-void BadGuy::StartBadGuy(int WIDTH, int HEIGHT )
+void BadGuy::StartBadGuy(int WIDTH, int HEIGHT, BadGuy BadGuys[], int cSize)
 {
-
+	bool noCollisions = false;
+	int exitCounter = 0;
 	if(!live)
 	{
 		if(rand() % 500 == 0)
 		{
-			live = true;
-			do{
-				x =  rand() % (WIDTH - boundx); 
-			}while (x <100);
-			do{
-				y =  rand() % (HEIGHT - boundy);
-			}while (y<100);
+			//Keep generating x and y until it doesn't collide with anything if can't find spot after 10 attempts stops
+			while (!noCollisions) {
+				if (exitCounter == 10) {
+					return;
+				}
+				randX(WIDTH);
+				randY(HEIGHT);
 
+				noCollisions = true;
+
+				for (int j = 0; j < cSize; j++)
+				{
+					if (BadGuys[j].getLive())
+					{
+						if (x > (BadGuys[j].getX() - BadGuys[j].getBoundX()) &&
+							x < (BadGuys[j].getX() + BadGuys[j].getBoundX()) &&
+							y >(BadGuys[j].getY() - BadGuys[j].getBoundY()) &&
+							y < (BadGuys[j].getY() + BadGuys[j].getBoundY()))
+						{
+							noCollisions = false;
+						}
+					}
+				}
+				exitCounter++;
+			}
+
+			live = true;
 		}
 	}
+}
+
+void BadGuy::randX(int WIDTH) {
+	do {
+		x = rand() % (WIDTH - boundx);
+	} while (x < 100);
+}
+
+void BadGuy::randY(int HEIGHT) {
+	do {
+		y = rand() % (HEIGHT - boundy);
+	} while (y < 100);
 }
 
