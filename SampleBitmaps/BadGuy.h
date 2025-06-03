@@ -9,7 +9,7 @@ public:
 	BadGuy();
 	~BadGuy();
 	void DrawBadGuy();
-	void StartBadGuy(int WIDTH, int HEIGHT, BadGuy BadGuys[], int cSize);
+	void StartBadGuy(int WIDTH, int HEIGHT, BadGuy BadGuys[], int cSize, int playerX, int playerY, int playerBoundryX, int playerBoundryY);
 	int getBoundX(){return boundx;}
 	int getBoundY(){return boundy;}
 	int getX(){return x;}

@@ -80,7 +80,7 @@ int main(void)
 			for(int i=0;i<NUM_weapons;i++)
 				weapons[i].Updateweapon(WIDTH, HEIGHT);
 			for(int i=0;i<NUM_BadGuyS;i++)
-				BadGuys[i].StartBadGuy(WIDTH,HEIGHT, BadGuys, NUM_BadGuyS);
+				BadGuys[i].StartBadGuy(WIDTH,HEIGHT, BadGuys, NUM_BadGuyS, myPlayer.getX(), myPlayer.getY(), myPlayer.getBoundX(), myPlayer.getBoundY());
 			for(int i=0;i<NUM_weapons;i++)
 				weapons[i].Collideweapon(BadGuys, NUM_BadGuyS);
 

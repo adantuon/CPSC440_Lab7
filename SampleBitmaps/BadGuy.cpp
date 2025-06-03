@@ -36,7 +36,7 @@ void BadGuy::DrawBadGuy()
 	}
 
 }
-void BadGuy::StartBadGuy(int WIDTH, int HEIGHT, BadGuy BadGuys[], int cSize)
+void BadGuy::StartBadGuy(int WIDTH, int HEIGHT, BadGuy BadGuys[], int cSize, int playerX, int playerY, int playerBoundryX, int playerBoundryY)
 {
 	bool noCollisions = false;
 	int exitCounter = 0;
@@ -44,7 +44,7 @@ void BadGuy::StartBadGuy(int WIDTH, int HEIGHT, BadGuy BadGuys[], int cSize)
 	{
 		if(rand() % 500 == 0)
 		{
-			//Keep generating x and y until it doesn't collide with anything if can't find spot after 10 attempts stops
+			//Keep generating x and y until it doesn't collide with a player or enemy if can't find spot after 10 attempts stops
 			while (!noCollisions) {
 				if (exitCounter == 10) {
 					return;
@@ -67,6 +67,15 @@ void BadGuy::StartBadGuy(int WIDTH, int HEIGHT, BadGuy BadGuys[], int cSize)
 						}
 					}
 				}
+
+				if (x > (playerX - playerBoundryX) &&
+					x < (playerX + playerBoundryX) &&
+					y >(playerY - playerBoundryY) &&
+					y < (playerY + playerBoundryY))
+				{
+					noCollisions = false;
+				}
+
 				exitCounter++;
 			}
 
