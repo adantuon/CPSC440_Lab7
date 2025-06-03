@@ -295,7 +295,7 @@ player::player(int HEIGHT)
 	y = HEIGHT / 2;
 
 	speed = 7;
-    int direction = 1;
+    direction = 1;
 	boundx = al_get_bitmap_width(image);
 	boundy = al_get_bitmap_height(image);
 
@@ -314,9 +314,6 @@ void player::DrawPlayer()
         break;
     case 3:
         al_draw_rotated_bitmap(image, 64, 0, getX(), getY(), 3 * ALLEGRO_PI / 2, 0);
-        break;
-    default:
-        al_draw_rotated_bitmap(image, 0, 64, getX(), getY(), ALLEGRO_PI / 2, 0);
         break;
     }
 }
