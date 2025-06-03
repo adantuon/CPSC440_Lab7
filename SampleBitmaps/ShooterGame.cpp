@@ -111,7 +111,10 @@ int main(void)
 			case ALLEGRO_KEY_SPACE:
 				keys[SPACE] = true;
 				for(int i=0;i<NUM_weapons;i++)
-					weapons[i].Fireweapon(myPlayer);
+					if (!weapons[i].getLive()) {
+						weapons[i].Fireweapon(myPlayer);
+						break;
+					}
 				break;
 			}
 		}

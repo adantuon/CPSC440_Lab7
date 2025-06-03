@@ -11,6 +11,7 @@ public:
 	void Fireweapon(player &Player);
 	void Updateweapon(int WIDTH, int HEIGHT);
 	void Collideweapon(BadGuy BadGuys[], int cSize);
+	bool getLive() { return live; }
 private:
 	int x;
 	int y;
